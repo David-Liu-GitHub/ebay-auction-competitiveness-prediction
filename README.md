@@ -55,3 +55,26 @@ Based on this tree model, we would predict a new auction by first investigating 
 ![](Image/Picture14.png)
 
 The confusion matrix below for the model with selected variables demonstrates that there is misclassification error, almost equal amounts of false positives and false negatives when it comes to predicting a competitive auction. Since the prediction of a competitive auction is at the benefit of the seller, there is not much risk in incorrectly classifying an auction other than a seller may choose not to auction their product or the auction will not get any bids. In the scenario where the auction does not get any bids the seller does not lose anything and they can try auctioning their product again as there are no costs associated with creating an auction on eBay if the seller is does not frequently sell products.
+
+![](Image/Picture18.png)
+
+### Duplicates problems in the dataset
+During the data pre-processing stage, we realized that out of the 1,972 data entries that we have, 346 of them are entirely identical, including their competitive classifications. Although there is no data description concerning this matter, we believe that these duplications are not errors but rather caused by repetitive listings done by the same sellers. The reason why we have exact auction prices might be a result of people bidding on the same price as historical transactions, as the products being sold are identical. This assumption can be reinforced by the fact that these duplicates tend to happen in those product categories that have higher transaction volumes, such as digital music copies. However, considering the fact that when making predictions, we will only be using one single data entry without being able to provide information on the repetitiveness of this product, we trained another model based on the dataset where we removed all the duplications just for comparison, and the result showed very similar feature importance, with the total data accuracy dropping to around 70%. Since the results are not different and the ability to label these points as duplicates cannot be confirmed based on the data available, it was decided to keep the duplicate rows in the dataset for creating the decision tree model.
+
+![](Image/Picture15.png)
+
+### Recommendations
+Based on the insights that we get from the data analysis, we could make the following strategic recommendations for the sellers who wish to participate in competitive auctions. First of all, the most predictive variable in the decision tree is opening price, followed closely by the seller rating. When it comes to the sellers’ rating, in general, it is a good strategy to strive for higher. On the other hand, those sellers with lower ratings can usually compensate with lower opening prices. 
+Secondly, if sellers have freedom to choose their market and currency, we would recommend to sell in GBP. Third, they should open their auctions for 5 days as this fruits proportionally better competitiveness. Moreover, the sellers should plan their auctions to close on Monday or, if they need to close it in the middle of week, on Thursday. It is also worth taking into consideration the category of goods being sold. For example, the “Home/Garden”, “Computer”, “Coins/Stamps”, “Pottery/Glass”, “Automotive”, “Collectibles”, “Electronics” and “EverythingElse” categories tend to be relatively more competitive for users with lower ratings (see Appendix for visualizations).
+Therefore, for a new seller with low rating and no market preferences, we would recommend to deal in the above mentioned categories at affordable opening prices, sell in GBP, open their auctions for 5 day and planning to close them either on Monday or Thursday. For those who are already in the eBay business and have some constraints set, we would suggest to optimize the available parameters as close to our recommendations as possible.
+### Conclusion
+We have analyzed the eBay auctions dataset from 1,972 auctions made in 2004. We have considered parameters such as product category, currency, seller rating,  duration of the auction, closing day of the week and opening price, in order to predict the main drivers for those auctions to become competitive.
+We performed exploratory data analysis and created a number of bar charts and box plots, in order to better understand the basic distributions of variables and detect patterns in their relationships. The next step was creating a classification decision tree model of a depth 8, which would serve as an intuitive tool for the sellers in predicting whether their auction is going to be competitive in the future. The decision tree’s classification accuracy score provides around 70% accuracy on a test dataset, however, it rises to around 83% if the model incorporates the closing price as a predictor which would not be known at the time the auction is listed.
+Based on the analysis we came up with recommendations on how to increase the chances of their auctions to become more competitive, both for new sellers and those who are already in the business.
+### References
+[1] 1.10. decision trees. scikit. (n.d.). Retrieved November 11, 2022, from https://scikit-learn.org/stable/modules/tree.html 
+### Appendix: Exploratory Data Analysis
+
+![](Image/Picture16.png)
+
+![](Image/Picture17.png)
